@@ -1,5 +1,3 @@
-
-
 from datetime import datetime, timedelta
 import logging
 from sqlalchemy.orm import joinedload
@@ -15,7 +13,7 @@ settings = get_settings()
 
 async def create_user_account(data, session, background_tasks):
     
-    user_exist = session.query(User).filter(User.emails == data.email).first()
+    user_exist = session.query(User).filter(User.email == data.email).first()  # Modified line
     if user_exist:
         raise HTTPException(status_code=400, detail="Email is already exists.")
     
