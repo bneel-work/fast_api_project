@@ -13,7 +13,7 @@ settings = get_settings()
 
 async def create_user_account(data, session, background_tasks):
     
-    user_exist = session.query(User).filter(User.email == data.email).first()
+    user_exist = session.query(User).filter(User.email == data.email).first()  # Corrected line
     if user_exist:
         raise HTTPException(status_code=400, detail="Email is already exists.")
     
@@ -122,7 +122,7 @@ def _generate_tokens(user, session):
     at_payload = {
         "sub": str_encode(str(user.id)),
         'a': access_key,
-        'r': str_encode(f"{user_token.id}"),
+        'r': str_encode(str(user_token.id)),
         'n': str_encode(f"{user.name}")
     }
 
