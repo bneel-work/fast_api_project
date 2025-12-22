@@ -122,7 +122,7 @@ def _generate_tokens(user, session):
     at_payload = {
         "sub": str_encode(str(user.id)),
         'a': access_key,
-        'r': str_encode(str(user_token.id)),
+        'r': str_encode(f"{user_token.id}"),
         'n': str_encode(f"{user.name}")
     }
 
