@@ -122,8 +122,7 @@ def _generate_tokens(user, session):
     at_payload = {
         "sub": str_encode(str(user.id)),
         'a': access_key,
-        'r': str_encode(f"{user_token.id}"),
-        'n': str_encode(f"{user.name}")
+        'r': str_encode(f"{user.name}")
     }
 
     at_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -135,7 +134,7 @@ def _generate_tokens(user, session):
         "access_token": access_token,
         "refresh_token": refresh_token,
         "expires_in": at_expires.seconds
-}
+    }
     
 async def email_forgot_password_link(data, background_tasks, session):
     user = await load_user(data.email, session)
